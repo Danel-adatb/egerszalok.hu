@@ -1,3 +1,58 @@
 body {
-  background-color: pink;
+  margin: 0px;
+  padding: 0px;
+}
+.page_content {
+  display: block;
+  position: relative;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+.page_content .main_map {
+  display: block;
+  width: 100%;
+}
+.page_content .main_map img {
+  display: block;
+  max-width: 100%;
+  width: 2048px;
+  height: auto;
+}
+.page_content .main_map .parcells {
+  display: block;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  max-width: 100%;
+  width: 2048px;
+  height: 100%;
+}
+.page_content .main_map .parcells .parcell_block {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 2.627%;
+  height: 4.621%;
+  background-color: rgba(0, 128, 0, 0.7);
+  transform: rotate(-25.5deg) skewX(40deg) scaleY(0.78801075);
+  border: 1px #000000 solid;
+  text-align: center;
+}
+.page_content .main_map .parcells #parcell_K09,
+.page_content .main_map .parcells #parcell_K10,
+.page_content .main_map .parcells #parcell_K11 {
+  transform: rotate(-25.5deg) skewX(40deg) scaleY(0.66913061);
+}
+.page_content .main_map .parcells #parcell_K24 {
+  width: 3.2%;
+  border-radius: 0px 0px 0px 20px;
+}
+.page_content .date_selection_box {
+  display: block;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 320px;
+  background-color: rgba(255, 255, 255, 0.5);
 }

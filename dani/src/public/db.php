@@ -73,6 +73,10 @@ class db_controller
                     }
                 }
             }
+            else //XSS!
+            {
+                die;
+            }
         }
         
         return $return;
