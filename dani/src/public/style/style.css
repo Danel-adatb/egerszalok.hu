@@ -1,6 +1,7 @@
 body {
   margin: 0px;
   padding: 0px;
+  cursor: default;
 }
 .page_content {
   display: block;
@@ -34,25 +35,86 @@ body {
   position: absolute;
   width: 2.627%;
   height: 4.621%;
-  background-color: rgba(0, 128, 0, 0.7);
+  background-color: rgba(153, 153, 153, 0.7);
   transform: rotate(-25.5deg) skewX(40deg) scaleY(0.78801075);
   border: 1px #000000 solid;
   text-align: center;
+  pointer-events: none;
+  overflow: hidden;
+  font-size: 0.8vw;
+  -webkit-transition: background-color 0.2s ease-out;
+  transition: background-color 0.2s ease-out;
 }
-.page_content .main_map .parcells #parcell_K09,
-.page_content .main_map .parcells #parcell_K10,
-.page_content .main_map .parcells #parcell_K11 {
+.page_content .main_map .parcells .parcell_block.free {
+  background-color: rgba(0, 128, 0, 0.7);
+  pointer-events: auto;
+  cursor: pointer;
+}
+.page_content .main_map .parcells .parcell_block.free:hover {
+  background-color: #008000;
+}
+.page_content .main_map .parcells .parcell_block.occupied {
+  background-color: rgba(255, 0, 0, 0.7);
+  pointer-events: none;
+}
+.page_content .main_map .parcells .parcell_block.occupied:hover {
+  background-color: #ff0000;
+}
+.page_content .main_map .parcells #parcell_KK09,
+.page_content .main_map .parcells #parcell_KK10,
+.page_content .main_map .parcells #parcell_KK11 {
   transform: rotate(-25.5deg) skewX(40deg) scaleY(0.66913061);
 }
-.page_content .main_map .parcells #parcell_K24 {
+.page_content .main_map .parcells #parcell_KK24 {
   width: 3.2%;
   border-radius: 0px 0px 0px 20px;
 }
 .page_content .date_selection_box {
-  display: block;
+  display: inline-block;
   position: absolute;
   top: 10px;
   left: 10px;
-  width: 320px;
+  padding: 20px;
+  border-radius: 10px;
   background-color: rgba(255, 255, 255, 0.5);
+}
+.page_content .date_selection_box .datepicker_box {
+  text-align: center;
+}
+.page_content .date_selection_box .datepicker_box span {
+  display: inline-block;
+  vertical-align: top;
+  width: 170px;
+  line-height: 30px;
+  font-size: 20px;
+  text-align: left;
+  margin-right: 20px;
+}
+.page_content .date_selection_box .datepicker_box input {
+  display: inline-block;
+  width: 100px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 6px;
+  cursor: pointer;
+  outline: none;
+  border: 1px #000000 solid;
+  margin-top: 2px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+}
+.page_content .date_selection_box .datepicker_box #chk_dates {
+  display: inline-block;
+  width: 100px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 1px #000000 solid;
+  background-color: #999999;
+  margin-top: 10px;
+  font-size: 16px;
+  text-align: center;
 }

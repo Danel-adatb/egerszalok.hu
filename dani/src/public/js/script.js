@@ -30,7 +30,7 @@ function datepicker_processes()
         
         //mai dátum
         let year = date_obj.getFullYear();
-        let month = date_obj.getMonth();
+        let month = date_obj.getMonth()+1; //A JS szerint van 0. hónap is. (Évre, napra nem igaz, de a hónapra igen! Tapsvihar...)
         let day = date_obj.getDate();
         var full_date = year + '-' + (month<10 ? '0' : '') + month + '-' + (day<10 ? '0' : '') + day;
         var full_date_unix = new Date(full_date.replace('-','/')).getTime();
@@ -94,12 +94,13 @@ function datepicker_processes()
         else //dátumok helyesek
         {
             let ajax_datas = 'ajax=show_parcells&start='+start_date+'&end='+end_date;
-            ajax_call(ajax_datas);
+            let response_target = '.parcells';
+            ajax_call(ajax_datas,response_target);
         }
     });
 }
 
-function ajax_call(ajax_datas)
+function ajax_call(ajax_datas,response_target)
 {
     $.ajax({
         url: window.location.href,
@@ -107,7 +108,8 @@ function ajax_call(ajax_datas)
         data: ajax_datas,
         dataType: 'html',
         success: function (response) {
-            
+            let resp = '<div>' + response + '</div>';
+            $(response_target).html($(resp).children(response_target).html());
         },
         complete: function() {
             

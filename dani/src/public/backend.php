@@ -3,7 +3,7 @@
 class backend
 {
     private $db_controller;
-
+    
     function __construct()
     {
         require_once 'db.php';
@@ -111,7 +111,7 @@ class backend
                 }
             }
             
-            $key = sprintf("%02d", $i);
+            $key = 'KK' . sprintf("%02d", $i);
             $parcell_matrix[$key] = array(
                 'top' => $top,
                 'left' => $left
@@ -121,14 +121,26 @@ class backend
         return $parcell_matrix;
     }
     
-    public function read_reservation_day_datas()
+    public function get_parcell_datas($start_date,$end_date)
     {
-        $return = array();
+        $parcell_datas = array();
         
-//        $sql = "SQL_SELECT day_activities FROM sse_szallasfoglalo_reservations WHERE day_code ='$day_code';";
-//        $day_datas_json = $this->db_controller->sql_query($sql);
+        if (!empty($start_date) && !empty($end_date))
+        {
+            $sql = "SQL_SELECT camp_id FROM foglalasok WHERE (date_start BETWEEN '$start_date' AND '$end_date') OR (date_end BETWEEN '$start_date' AND '$end_date') OR ('$start_date' BETWEEN date_start AND date_end) OR ('$end_date' BETWEEN date_start AND date_end);";
+            $occupied_sql = $this->db_controller->sql_query($sql);
+            if (!empty($occupied_sql))
+            {
+                foreach ($occupied_sql as $v)
+                {
+                    $parcell_datas[$v['camp_id']] = array(
+                        'occupied' => true
+                    );
+                }
+            }
+        }
         
-        return $return;
+        return $parcell_datas;
     }
     
 }

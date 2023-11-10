@@ -3,6 +3,8 @@
 class frontend
 {
     private $backend;
+    protected $start_date;
+    protected $end_date;
     
     function __construct()
     {
@@ -32,20 +34,29 @@ class frontend
         $return = '<div class="date_selection_box">';
             $return.= '<div class="datepicker_box"><span>Bejelentkezés napja:</span><input type="text" class="datepicker" id="start_date"></div>';
             $return.= '<div class="datepicker_box"><span>Kijelentkezés napja:</span><input type="text" class="datepicker" id="end_date"></div>';
-            $return.= '<div class="datepicker_box"><div id="chk_dates">Keresés</div></div>';
+            $return.= '<div class="datepicker_box"><div id="chk_dates">MUTAT</div></div>';
         $return.= '</div>'; //date_selection_box
         
         return $return;
     }
     
-    public function show_parcells()
+    public function show_parcells($start_date = 0,$end_date = 0)
     {
         $return = '<div class="parcells">';
         
+        $parcell_datas = $this->backend->get_parcell_datas($start_date,$end_date);
         $parcell_matrix = $this->backend->get_parcell_matrix();
         foreach ($parcell_matrix as $pid => $coordinates)
         {
-            $return.= '<div class="parcell_block" id="parcell_K' . $pid . '" style="top:' . $coordinates['top'] . '%;left:' . $coordinates['left'] . '%;">K' . $pid . '</div>';
+            $class = ' disabled';
+            if (!empty($parcell_datas))
+            {
+                $class = (!empty($parcell_datas[$pid]['occupied']) && $parcell_datas[$pid]['occupied'] === true) ? ' occupied' : ' free';
+            }
+            
+            $return.= '<div class="parcell_block' . $class . '" id="parcell_' . $pid . '" data-camp_id="' . $pid . '" style="top:' . $coordinates['top'] . '%;left:' . $coordinates['left'] . '%;">';
+                $return.= $pid;
+            $return.= '</div>';
         }
         
         $return.= '</div>'; //parcells
@@ -72,7 +83,12 @@ class frontend
             switch ($_POST['ajax'])
             {
                 case 'show_parcells':
-                    $output = '';
+                    $start_date = (!empty($_POST['start']) && preg_match('/^(\d{4})-(\d{2})-(\d{2})$/', $_POST['start'])) ? $_POST['start'] : 0;
+                    $end_date = (!empty($_POST['end']) && preg_match('/^(\d{4})-(\d{2})-(\d{2})$/', $_POST['end'])) ? $_POST['end'] : 0;
+                    if (!empty($start_date) && !empty($end_date)) //validált dátumok POST adatokból
+                    {
+                        $output = $this->show_parcells($start_date,$end_date);
+                    }
                 break;
             }
         }

@@ -1,6 +1,7 @@
 body {
   margin: 0px;
   padding: 0px;
+  cursor: default;
 }
 
 .page_content {
@@ -36,19 +37,42 @@ body {
                 position: absolute;
                 width: 2.627%;
                 height: 4.621%;
-                background-color: rgba(0,128,0,.7);
+                background-color: rgba(153,153,153,.7);
                 transform: rotate(-25.5deg) skewX(40deg) scaleY(cos(38deg));
                 border: 1px #000000 solid;
                 text-align: center;
+                pointer-events: none;
+                overflow: hidden;
+                font-size: .8vw;
+                -webkit-transition: background-color .2s ease-out;
+                        transition: background-color .2s ease-out;
+                
+                &.free {
+                    background-color: rgba(0,128,0,.7);
+                    pointer-events: auto;
+                    cursor: pointer;
+                    
+                    &:hover {
+                        background-color: rgba(0,128,0,1);
+                    }
+                }
+                
+                &.occupied {
+                    background-color: rgba(255,0,0,.7);
+                    pointer-events: none;
+                    &:hover {
+                        background-color: rgba(255,0,0,1);
+                    }
+                }
             }
             
-            #parcell_K09,
-            #parcell_K10,
-            #parcell_K11 {
+            #parcell_KK09,
+            #parcell_KK10,
+            #parcell_KK11 {
                 transform: rotate(-25.5deg) skewX(40deg) scaleY(cos(48deg));
             }
             
-            #parcell_K24 {
+            #parcell_KK24 {
                 width: 3.2%;
                 border-radius: 0px 0px 0px 20px;
             }
@@ -56,13 +80,56 @@ body {
     }
     
     .date_selection_box {
-        display: block;
+        display: inline-block;
         position: absolute;
         top: 10px;
         left: 10px;
-        width: 320px;
+        padding: 20px;
+        border-radius: 10px;
         background-color: rgba(255,255,255,.5);
+        
+        .datepicker_box {
+            text-align: center;
+            
+            span {
+                display: inline-block;
+                vertical-align: top;
+                width: 170px;
+                line-height: 30px;
+                font-size: 20px;
+                text-align: left;
+                margin-right: 20px;
+            }
+            
+            input {
+                display: inline-block;
+                width: 100px;
+                height: 30px;
+                line-height: 30px;
+                border-radius: 6px;
+                cursor: pointer;
+                outline: none;
+                border: 1px #000000 solid;
+                margin-top: 2px;
+                margin-bottom: 10px;
+                font-size: 16px;
+                font-weight: bold;
+                text-align: center;
+            }
+            
+            #chk_dates {
+                display: inline-block;
+                width: 100px;
+                height: 30px;
+                line-height: 30px;
+                border-radius: 6px;
+                cursor: pointer;
+                border: 1px #000000 solid;
+                background-color: #999999;
+                margin-top: 10px;
+                font-size: 16px;
+                text-align: center;
+            }
+        }
     }
 }
-
-
