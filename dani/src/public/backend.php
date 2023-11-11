@@ -13,6 +13,9 @@ class backend
     public function get_parcell_matrix()
     {
         $parcell_matrix = array();
+        $top = 0;
+        $left = 0;
+
         for ($i=1;$i<=36;$i++)
         {
             if ($i <= 11) //első sor pozíciók
