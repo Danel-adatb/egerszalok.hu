@@ -76,10 +76,6 @@ function datepicker_processes()
             {
                 alert_msg = 'Kérem adja meg a kijelentkezés napját!';
             }
-            else if (start_date_unix < full_date_unix)
-            {
-                alert_msg = 'A kijelentkezés nem lehet korábbi a mai napnál!';
-            }
             else if (start_date_unix > end_date_unix)
             {
                 alert_msg = 'A kijelentkezés nem lehet korábbi a bejelentkezés napjánál!';

@@ -48,11 +48,11 @@ class frontend
         $parcell_matrix = $this->backend->get_parcell_matrix();
         foreach ($parcell_matrix as $pid => $coordinates)
         {
-            if($start_date === 0 && $end_date === 0) 
+            if($start_date == 0 && $end_date == 0) 
             {
                 $class = ' disabled';
             } 
-            elseif (!empty($parcell_datas))
+            else
             {
                 $class = (!empty($parcell_datas[$pid]['occupied']) && $parcell_datas[$pid]['occupied'] === true) ? ' occupied' : ' free';
             }
