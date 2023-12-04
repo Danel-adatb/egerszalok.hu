@@ -19,7 +19,7 @@ class frontend
         $return = '<head>';
             $return.= '<title>Egerszalók camping</title>';
             $return.= '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />';
-            $return.= '<link href="src/public/style/style.css?v=' . $ver . '" rel="stylesheet" type="text/css" />';
+            $return.= '<link href="src/public/style/main.css?v=' . $ver . '" rel="stylesheet" type="text/css" />';
             $return.= '<link href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />';
             $return.= '<script src="https://code.jquery.com/jquery-3.6.0.js"></script>';
             $return.= '<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>';
