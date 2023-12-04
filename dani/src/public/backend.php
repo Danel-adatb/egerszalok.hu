@@ -136,18 +136,10 @@ class backend
             {
                 foreach ($occupied_sql as $v)
                 {
-                    if(is_array($v)) 
-                    {
-                        $parcell_datas[$v['camp_id']] = array(
-                            'occupied' => true
-                        );
-                    } 
-                    else 
-                    {
-                        $parcell_datas[$v] = array(
-                            'occupied' => true
-                        );
-                    }
+                    $id_data = is_array($v) ? $v['camp_id'] : $v;
+                    $parcell_datas[$id_data] = array(
+                        'occupied' => true
+                    );
                 }
             }
         }
