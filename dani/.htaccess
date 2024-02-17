@@ -1,5 +1,5 @@
 <Files ~ "^\.(htaccess|htpasswd)$">
-deny from all
+Require all denied
 </Files>
 RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-f
